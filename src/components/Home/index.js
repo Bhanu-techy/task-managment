@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {fetchData} from '../../redux/listSlice'
 import Card from '../Card'
@@ -6,27 +6,48 @@ import './index.css'
 
 const Home = () => {
   const dispatch = useDispatch()
-  let todos = useSelector(state => state.list.data)
-  
-  const [filterData, setfilterData] = useState("")
-  const [todosList, setTodosList] = useState()
+  const todos = useSelector(state => state.list.data)
 
-  const onChangeFilter = (event) => {
-    setfilterData(event.target.value)
-    
-    
+  const [priority, setPriority] = useState('')
+  const [dueDate, setDuedate] = useState('')
+  const today = new Date().toISOString().split('T')[0]
+
+  const onChangeFilter = event => {
+    setPriority(event.target.value)
   }
-  const filteredList = todos.filter(each => each.priority === filterData.toLowerCase())
-  const filteredData = filterData ==="" ? todos : filteredList
+
+  let filteredList = todos.filter(each => {
+    if (dueDate === 'UPCOMING') {
+      return each.dueDate > today
+    }
+    if (dueDate === 'OVERDUE') {
+      return each.dueDate <= today
+    }
+    return true
+  })
+
+  filteredList = filteredList.filter(each => {
+    if (priority !== '') {
+      return each.priority === priority.toLowerCase()
+    }
+    return filteredList
+  })
+
   console.log(filteredList)
+
+  const onChangeDate = event => {
+    setDuedate(event.target.value)
+  }
 
   useEffect(() => {
     dispatch(fetchData())
   }, [dispatch])
 
-  const pendingList = filteredData.filter(each => each.status === 'pending')
-  const completedList = filteredData.filter(each => each.status === 'completed')
-  const inprogressList = filteredData.filter(each => each.status === 'in-progress')
+  const pendingList = filteredList.filter(each => each.status === 'pending')
+  const completedList = filteredList.filter(each => each.status === 'completed')
+  const inprogressList = filteredList.filter(
+    each => each.status === 'in-progress',
+  )
 
   return (
     <div className="home-container">
@@ -37,38 +58,43 @@ const Home = () => {
           <option value="LOW">low</option>
           <option value="MEDIUM">medium</option>
         </select>
-        <select>
-          <option value="UPCOMMING">upcoming</option>
+        <select onChange={onChangeDate}>
+          <option value="UPCOMING">upcoming</option>
           <option value="OVERDUE">over due</option>
         </select>
       </div>
       <div className="card-container">
-        <div className="card">
-          <p>To Do</p>
+        {pendingList.length > 0 && (
+          <div className="card">
+            <p>To Do</p>
+            <ul>
+              {pendingList.map(each => (
+                <Card data={each} key={each.id} />
+              ))}
+            </ul>
+          </div>
+        )}
+        {completedList.length > 0 && (
+          <div className="card">
+            <p>completed</p>
 
-          <ul>
-            {pendingList.map(each => (
-              <Card data={each} key={each.id} />
-            ))}
-          </ul>
-        </div>
-        <div className="card">
-          <p>on Progress</p>
-
-          <ul>
-            {completedList.map(each => (
-              <Card data={each} key={each.id} />
-            ))}
-          </ul>
-        </div>
-        <div className="card">
-          <p>Completed</p>
-          <ul>
-            {inprogressList.map(each => (
-              <Card data={each} key={each.id} />
-            ))}
-          </ul>
-        </div>
+            <ul>
+              {completedList.map(each => (
+                <Card data={each} key={each.id} />
+              ))}
+            </ul>
+          </div>
+        )}
+        {inprogressList.length > 0 && (
+          <div className="card">
+            <p>on Progress</p>
+            <ul>
+              {inprogressList.map(each => (
+                <Card data={each} key={each.id} />
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   )
