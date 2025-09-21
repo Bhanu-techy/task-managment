@@ -12,6 +12,39 @@ const Home = () => {
   const [dueDate, setDuedate] = useState('')
   const today = new Date().toISOString().split('T')[0]
 
+  const [newtask, setTask] = useState({})
+  const [title, setTitle] = useState('')
+  const [inputpriority, setInppriority] = useState('')
+  const [description, setDescription] = useState('')
+  const [status, setStatus] = useState("")
+
+  const onChangeTitle = event =>{
+    setTitle(event.target.value)
+  }
+
+  const onChangePriority = event => {
+    setInppriority(event.target.value)
+  }
+
+  const onChangeDescription = event => {
+    setDescription(event.target.value)
+  }
+
+  const onAddTask = (event, status) => {
+    event.preventDefault()
+    const task = {
+      title,
+      dueDate: today,
+      priority: inputpriority,
+      status,
+      description,
+    }
+    setTask(task)
+    setDescription("")
+    setInppriority("")
+    setTitle("")
+  }
+
   const onChangeFilter = event => {
     setPriority(event.target.value)
   }
@@ -49,6 +82,8 @@ const Home = () => {
     each => each.status === 'in-progress',
   )
 
+  console.log(newtask)
+
   return (
     <div className="home-container">
       <div className="container">
@@ -72,6 +107,22 @@ const Home = () => {
                 <Card data={each} key={each.id} />
               ))}
             </ul>
+            <form onSubmit={() =>onAddTask("in-progress")}>
+              <div className="inputdiv">
+                <label htmlFor="title">title:</label>
+                <input type="text" id="title" />
+              </div>
+              <div className="inputdiv">
+                <label htmlFor="description">description:</label>
+                <input htmlFor="description" type="text" />
+              </div>
+              
+              <div className="inputdiv">
+                <lable htmlFor="priority">priority:</lable>
+                <input id="priority" type="text" />
+              </div>
+              <button type="submit">Add Task</button>
+            </form>
           </div>
         )}
         {completedList.length > 0 && (
@@ -83,6 +134,21 @@ const Home = () => {
                 <Card data={each} key={each.id} />
               ))}
             </ul>
+            <form onSubmit={() =>onAddTask("in-progress")}>
+              <div className="inputdiv">
+                <label htmlFor="title">title:</label>
+                <input type="text" id="title" />
+              </div>
+              <div className="inputdiv">
+                <label htmlFor="description">description:</label>
+                <input htmlFor="description" type="text" />
+              </div>
+              <div className="inputdiv">
+                <lable htmlFor="priority">priority:</lable>
+                <input id="priority" type="text" />
+              </div>
+              <button type="submit">Add Task</button>
+            </form>
           </div>
         )}
         {inprogressList.length > 0 && (
@@ -93,6 +159,21 @@ const Home = () => {
                 <Card data={each} key={each.id} />
               ))}
             </ul>
+            <form onSubmit={() =>onAddTask("in-progress")}>
+              <div className="inputdiv">
+                <label htmlFor="title">title:</label>
+                <input type="text" id="title" onChange={onChangeTitle} />
+              </div>
+              <div className="inputdiv">
+                <label htmlFor="description">description:</label>
+                <input htmlFor="description" type="text" onChange={onChangeDescription}/>
+              </div>
+              <div className="inputdiv">
+                <lable htmlFor="priority">priority:</lable>
+                <input id="priority" type="text" onChange={onChangePriority} />
+              </div>
+              <button type="submit">Add Task</button>
+            </form>
           </div>
         )}
       </div>

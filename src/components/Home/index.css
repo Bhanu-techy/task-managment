@@ -24,15 +24,22 @@ ul {
   justify-content: flex-start;
   align-items: center;
 }
-.container{
+.container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 50vw;
 }
+.inputdiv{
+  display: flex;
+  justify-content: space-between;
+}
 
 @media (max-width: 768px) {
   .card {
     width: 250px;
+  }
+  label {
+    width: 200px;
   }
 }
