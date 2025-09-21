@@ -1,0 +1,16 @@
+import './index.css'
+
+const Card = props => {
+  const {data} = props
+  const {title, description, priority} = data
+
+  return (
+    <li>
+      <p>{priority}</p>
+      <h1 className="title">{title}</h1>
+      <p className="description">{description}</p>
+    </li>
+  )
+}
+
+export default Card

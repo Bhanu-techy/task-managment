@@ -1,0 +1,13 @@
+.title {
+  font-size: 20px;
+  font-family: roboto;
+}
+.description {
+  font-family: roboto;
+}
+li {
+  border: 2px solid #bfbfbf;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+}
