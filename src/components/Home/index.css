@@ -30,9 +30,13 @@ ul {
   align-items: center;
   width: 50vw;
 }
-.inputdiv{
+.inputdiv {
   display: flex;
   justify-content: space-between;
+}
+form {
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 768px) {

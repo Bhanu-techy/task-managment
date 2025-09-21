@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {fetchData} from '../../redux/listSlice'
 import Card from '../Card'
+import TaskForm from '../TaskForm'
 import './index.css'
 
 const Home = () => {
@@ -16,9 +17,9 @@ const Home = () => {
   const [title, setTitle] = useState('')
   const [inputpriority, setInppriority] = useState('')
   const [description, setDescription] = useState('')
-  const [status, setStatus] = useState("")
+  const [status, setStatus] = useState('')
 
-  const onChangeTitle = event =>{
+  const onChangeTitle = event => {
     setTitle(event.target.value)
   }
 
@@ -40,9 +41,9 @@ const Home = () => {
       description,
     }
     setTask(task)
-    setDescription("")
-    setInppriority("")
-    setTitle("")
+    setDescription('')
+    setInppriority('')
+    setTitle('')
   }
 
   const onChangeFilter = event => {
@@ -86,8 +87,8 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <div className="container">
-        <h1>Dashboard</h1>
+      <div className="flex-row">
+        <h1 className="text-blue-200 h-8">Dashboard</h1>
         <select onChange={onChangeFilter}>
           <option value="HIGH">high</option>
           <option value="LOW">low</option>
@@ -107,22 +108,7 @@ const Home = () => {
                 <Card data={each} key={each.id} />
               ))}
             </ul>
-            <form onSubmit={() =>onAddTask("in-progress")}>
-              <div className="inputdiv">
-                <label htmlFor="title">title:</label>
-                <input type="text" id="title" />
-              </div>
-              <div className="inputdiv">
-                <label htmlFor="description">description:</label>
-                <input htmlFor="description" type="text" />
-              </div>
-              
-              <div className="inputdiv">
-                <lable htmlFor="priority">priority:</lable>
-                <input id="priority" type="text" />
-              </div>
-              <button type="submit">Add Task</button>
-            </form>
+            <TaskForm />
           </div>
         )}
         {completedList.length > 0 && (
@@ -134,21 +120,7 @@ const Home = () => {
                 <Card data={each} key={each.id} />
               ))}
             </ul>
-            <form onSubmit={() =>onAddTask("in-progress")}>
-              <div className="inputdiv">
-                <label htmlFor="title">title:</label>
-                <input type="text" id="title" />
-              </div>
-              <div className="inputdiv">
-                <label htmlFor="description">description:</label>
-                <input htmlFor="description" type="text" />
-              </div>
-              <div className="inputdiv">
-                <lable htmlFor="priority">priority:</lable>
-                <input id="priority" type="text" />
-              </div>
-              <button type="submit">Add Task</button>
-            </form>
+            <TaskForm />
           </div>
         )}
         {inprogressList.length > 0 && (
@@ -159,21 +131,7 @@ const Home = () => {
                 <Card data={each} key={each.id} />
               ))}
             </ul>
-            <form onSubmit={() =>onAddTask("in-progress")}>
-              <div className="inputdiv">
-                <label htmlFor="title">title:</label>
-                <input type="text" id="title" onChange={onChangeTitle} />
-              </div>
-              <div className="inputdiv">
-                <label htmlFor="description">description:</label>
-                <input htmlFor="description" type="text" onChange={onChangeDescription}/>
-              </div>
-              <div className="inputdiv">
-                <lable htmlFor="priority">priority:</lable>
-                <input id="priority" type="text" onChange={onChangePriority} />
-              </div>
-              <button type="submit">Add Task</button>
-            </form>
+            <TaskForm />
           </div>
         )}
       </div>
