@@ -13,39 +13,6 @@ const Home = () => {
   const [dueDate, setDuedate] = useState('')
   const today = new Date().toISOString().split('T')[0]
 
-  const [newtask, setTask] = useState({})
-  const [title, setTitle] = useState('')
-  const [inputpriority, setInppriority] = useState('')
-  const [description, setDescription] = useState('')
-  const [status, setStatus] = useState('')
-
-  const onChangeTitle = event => {
-    setTitle(event.target.value)
-  }
-
-  const onChangePriority = event => {
-    setInppriority(event.target.value)
-  }
-
-  const onChangeDescription = event => {
-    setDescription(event.target.value)
-  }
-
-  const onAddTask = (event, status) => {
-    event.preventDefault()
-    const task = {
-      title,
-      dueDate: today,
-      priority: inputpriority,
-      status,
-      description,
-    }
-    setTask(task)
-    setDescription('')
-    setInppriority('')
-    setTitle('')
-  }
-
   const onChangeFilter = event => {
     setPriority(event.target.value)
   }
@@ -83,57 +50,63 @@ const Home = () => {
     each => each.status === 'in-progress',
   )
 
-  console.log(newtask)
-
   return (
-    <div className="home-container">
-      <div className="flex-row">
-        <h1 className="text-blue-200 h-8">Dashboard</h1>
-        <select onChange={onChangeFilter}>
-          <option value="HIGH">high</option>
-          <option value="LOW">low</option>
-          <option value="MEDIUM">medium</option>
-        </select>
-        <select onChange={onChangeDate}>
-          <option value="UPCOMING">upcoming</option>
-          <option value="OVERDUE">over due</option>
-        </select>
-      </div>
-      <div className="card-container">
-        {pendingList.length > 0 && (
-          <div className="card">
-            <p>To Do</p>
-            <ul>
-              {pendingList.map(each => (
-                <Card data={each} key={each.id} />
-              ))}
-            </ul>
-            <TaskForm />
-          </div>
-        )}
-        {completedList.length > 0 && (
-          <div className="card">
-            <p>completed</p>
+    <div className="home-bg">
+      <nav>
+        <h1>Task Managment Project</h1>
+        <hr />
+      </nav>
+      <div className="home-container">
+        <div className="container">
+          <h1 className="">Dashboard</h1>
 
-            <ul>
-              {completedList.map(each => (
-                <Card data={each} key={each.id} />
-              ))}
-            </ul>
-            <TaskForm />
-          </div>
-        )}
-        {inprogressList.length > 0 && (
-          <div className="card">
-            <p>on Progress</p>
-            <ul>
-              {inprogressList.map(each => (
-                <Card data={each} key={each.id} />
-              ))}
-            </ul>
-            <TaskForm />
-          </div>
-        )}
+          <select onChange={onChangeFilter}>
+            <option value="HIGH">high</option>
+            <option value="LOW">low</option>
+            <option value="MEDIUM">medium</option>
+          </select>
+          <select onChange={onChangeDate}>
+            <option value="UPCOMING">upcoming</option>
+            <option value="OVERDUE">over due</option>
+          </select>
+        </div>
+        <div className="card-container">
+          {pendingList.length > 0 && (
+            <div className="card">
+              <p>To Do</p>
+              <hr />
+              <ul>
+                {pendingList.map(each => (
+                  <Card data={each} key={each.id} />
+                ))}
+              </ul>
+              <TaskForm />
+            </div>
+          )}
+          {completedList.length > 0 && (
+            <div className="card">
+              <p>completed</p>
+
+              <ul>
+                {completedList.map(each => (
+                  <Card data={each} key={each.id} />
+                ))}
+              </ul>
+              <TaskForm />
+            </div>
+          )}
+          {inprogressList.length > 0 && (
+            <div className="card">
+              <p>on Progress</p>
+              <ul>
+                {inprogressList.map(each => (
+                  <Card data={each} key={each.id} />
+                ))}
+              </ul>
+              <TaskForm />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

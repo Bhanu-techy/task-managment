@@ -4,8 +4,6 @@ import {createTask} from '../../redux/listSlice'
 
 const TaskForm = () => {
   const dispatch = useDispatch()
-  const tasks = useSelector(state => state.list.data)
-
   const [task, setTask] = useState({
     title: '',
     description: '',
