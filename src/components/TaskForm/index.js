@@ -1,13 +1,15 @@
 import {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {createTask} from '../../redux/listSlice'
 
-const TaskForm = () => {
+const TaskForm = (props) => {
+  const {status} = props
   const dispatch = useDispatch()
+  
   const [task, setTask] = useState({
     title: '',
     description: '',
-    status: '',
+    status,
     priority: '',
     dueDate: '',
   })
@@ -39,7 +41,7 @@ const TaskForm = () => {
         />
         <input
           name="status"
-          value={task.status}
+          value={status}
           onChange={handleChange}
           placeholder="Status"
         />

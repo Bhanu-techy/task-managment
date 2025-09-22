@@ -89,7 +89,7 @@ const Home = () => {
                   <Card data={each} key={each.id} />
                 ))}
               </ul>
-              <TaskForm />
+              <TaskForm status={pendingList[0].status} />
             </div>
           )}
           {inprogressList.length > 0 && (
@@ -103,7 +103,7 @@ const Home = () => {
                   <Card data={each} key={each.id} />
                 ))}
               </ul>
-              <TaskForm />
+              <TaskForm status={inprogressList[0].status}/>
             </div>
           )}
           {completedList.length > 0 && (
@@ -117,7 +117,7 @@ const Home = () => {
                   <Card data={each} key={each.id} />
                 ))}
               </ul>
-              <TaskForm />
+              <TaskForm status={completedList[0].status} />
             </div>
           )}
         </div>

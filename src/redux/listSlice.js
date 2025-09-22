@@ -31,7 +31,6 @@ export const listSlice = createSlice({
     builder.addCase(createTask.fulfilled, (state, action) => {
       state.data.push(action.payload)
     })
-
     builder.addCase(fetchData.fulfilled, (state, action) => {
       state.data = action.payload
     })
