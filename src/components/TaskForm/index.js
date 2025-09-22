@@ -2,10 +2,10 @@ import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import {createTask} from '../../redux/listSlice'
 
-const TaskForm = (props) => {
+const TaskForm = props => {
   const {status} = props
   const dispatch = useDispatch()
-  
+
   const [task, setTask] = useState({
     title: '',
     description: '',

@@ -61,7 +61,7 @@ const Home = () => {
           <h1 className="">Dashboard</h1>
           <div className="filter-cont">
             <select onChange={onChangeFilter}>
-              <option disapled selected hidden>
+              <option selected hidden>
                 filter
               </option>
               <option value="HIGH">high</option>
@@ -69,7 +69,7 @@ const Home = () => {
               <option value="MEDIUM">medium</option>
             </select>
             <select onChange={onChangeDate}>
-              <option disapled selected hidden>
+              <option selected hidden>
                 Day wise
               </option>
               <option value="UPCOMING">upcoming</option>
