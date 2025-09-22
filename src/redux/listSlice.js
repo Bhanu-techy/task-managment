@@ -31,12 +31,14 @@ export const listSlice = createSlice({
   reducers: {},
 
   extraReducers: builder => {
-    builder.addCase(fetchData.fulfilled, (state, action) => {
-      state.data = action.payload
-    })
-    builder.addCase(createTask.fulfilled, (state, action) => {
-      state.data.push(action.payload)
-    })
+    builder.addCase(fetchData.fulfilled, (state, action) => ({
+      ...state,
+      data: action.payload,
+    }))
+    builder.addCase(createTask.fulfilled, (state, action) => ({
+      ...state,
+      data: [...state.data, action.payload],
+    }))
   },
 })
 
