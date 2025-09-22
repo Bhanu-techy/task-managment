@@ -5,8 +5,8 @@ const Card = props => {
   const {title, description, priority} = data
 
   return (
-    <li>
-      <p>{priority}</p>
+    <li className="todo-box">
+      <p className="priority">{priority}</p>
       <h1 className="title">{title}</h1>
       <p className="description">{description}</p>
     </li>

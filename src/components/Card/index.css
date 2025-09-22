@@ -4,10 +4,26 @@
 }
 .description {
   font-family: roboto;
+  color: #888383;
 }
 li {
-  border: 2px solid #bfbfbf;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid #dfdbdb;
   padding: 10px;
-  margin: 10px;
+  align-items: flex-start;
+  margin: 15px;
   border-radius: 10px;
+}
+.todo-box {
+  background-color: #ffffff;
+}
+.priority {
+  padding-left: 3px;
+  padding-right: 3px;
+  border-radius: 3px;
+  color: rgb(221, 101, 54);
+  border: none;
+  background-color: rgb(235, 206, 154);
 }

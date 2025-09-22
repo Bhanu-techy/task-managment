@@ -8,7 +8,7 @@ import './App.css'
 const App = () => (
   <Provider store={store}>
     <div className="bg-container">
-      <div className="sidebar"></div>
+      <div className="sidebar">Project</div>
       <hr className="side-line" />
       <Home />
     </div>

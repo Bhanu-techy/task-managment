@@ -54,27 +54,36 @@ const Home = () => {
     <div className="home-bg">
       <nav>
         <h1>Task Managment Project</h1>
-        <hr />
+        <hr className="nav-line" />
       </nav>
       <div className="home-container">
         <div className="container">
           <h1 className="">Dashboard</h1>
-
-          <select onChange={onChangeFilter}>
-            <option value="HIGH">high</option>
-            <option value="LOW">low</option>
-            <option value="MEDIUM">medium</option>
-          </select>
-          <select onChange={onChangeDate}>
-            <option value="UPCOMING">upcoming</option>
-            <option value="OVERDUE">over due</option>
-          </select>
+          <div className="filter-cont">
+            <select onChange={onChangeFilter}>
+              <option disapled selected hidden>
+                filter
+              </option>
+              <option value="HIGH">high</option>
+              <option value="LOW">low</option>
+              <option value="MEDIUM">medium</option>
+            </select>
+            <select onChange={onChangeDate}>
+              <option disapled selected hidden>
+                Day wise
+              </option>
+              <option value="UPCOMING">upcoming</option>
+              <option value="OVERDUE">over due</option>
+            </select>
+          </div>
         </div>
         <div className="card-container">
           {pendingList.length > 0 && (
             <div className="card">
-              <p>To Do</p>
-              <hr />
+              <p>
+                To Do <span>{pendingList.length}</span>
+              </p>
+              <hr className="to-do-hr" />
               <ul>
                 {pendingList.map(each => (
                   <Card data={each} key={each.id} />
@@ -83,23 +92,28 @@ const Home = () => {
               <TaskForm />
             </div>
           )}
-          {completedList.length > 0 && (
+          {inprogressList.length > 0 && (
             <div className="card">
-              <p>completed</p>
-
+              <p>
+                On Progress <span>{inprogressList.length}</span>
+              </p>
+              <hr className="onprogress-hr" />
               <ul>
-                {completedList.map(each => (
+                {inprogressList.map(each => (
                   <Card data={each} key={each.id} />
                 ))}
               </ul>
               <TaskForm />
             </div>
           )}
-          {inprogressList.length > 0 && (
+          {completedList.length > 0 && (
             <div className="card">
-              <p>on Progress</p>
+              <p>
+                Done <span>{completedList.length}</span>
+              </p>
+              <hr className="done-hr" />
               <ul>
-                {inprogressList.map(each => (
+                {completedList.map(each => (
                   <Card data={each} key={each.id} />
                 ))}
               </ul>
