@@ -22,11 +22,11 @@ body {
   height: 100vh;
 }
 
-
 @media (max-width: 768px) {
-  .side-line{
+  .side-line {
     display: none;
-  }.sidebar{
+  }
+  .sidebar {
     display: none;
   }
 }
