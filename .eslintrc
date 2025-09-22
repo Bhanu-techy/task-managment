@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "extends": [
     "react-app",
     "airbnb",
@@ -25,10 +25,7 @@
         "styledComponents.js"
       ],
       "rules": {
-        "import/prefer-default-export": "off",
-        
-          
-        
+        "import/prefer-default-export": "off"
       }
     }
   ],
