@@ -21,3 +21,12 @@ body {
 .side-line {
   height: 100vh;
 }
+
+
+@media (max-width: 768px) {
+  .side-line{
+    display: none;
+  }.sidebar{
+    display: none;
+  }
+}

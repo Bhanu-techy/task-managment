@@ -9,7 +9,6 @@ nav {
   padding: 10px;
 }
 
-
 .to-do-hr {
   background-color: blue;
   height: 2px;
@@ -36,6 +35,9 @@ span {
   padding-right: 5px;
 
   border-radius: 50%;
+}
+.nav-line {
+  width: 100%;
 }
 .home-bg {
   display: flex;
@@ -99,5 +101,11 @@ form {
   }
   label {
     width: 200px;
+  }
+  h1 {
+    font-size: 20px;
+  }
+  .home-bg {
+    width: 100vw;
   }
 }

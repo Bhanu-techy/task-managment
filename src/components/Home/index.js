@@ -54,8 +54,8 @@ const Home = () => {
     <div className="home-bg">
       <nav>
         <h1>Task Managment Project</h1>
-        <hr className="nav-line" />
       </nav>
+      <hr className="nav-line" />
       <div className="home-container">
         <div className="container">
           <h1 className="">Dashboard</h1>
@@ -103,7 +103,7 @@ const Home = () => {
                   <Card data={each} key={each.id} />
                 ))}
               </ul>
-              <TaskForm status={inprogressList[0].status}/>
+              <TaskForm status={inprogressList[0].status} />
             </div>
           )}
           {completedList.length > 0 && (
